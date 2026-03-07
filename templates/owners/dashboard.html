@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Property Owner CRM{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-12">
+        <h1>Dashboard</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total Owners</h5>
+                <h2 class="text-primary">{{ total_owners }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Active Owners</h5>
+                <h2 class="text-success">{{ active_owners }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Excellent Rated (5⭐)</h5>
+                <h2 class="text-warning">{{ excellent_rated }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Quick Actions</h5>
+                <a href="{% url 'owner_create' %}" class="btn btn-sm btn-primary">Add Owner</a>
+                <a href="{% url 'owner_list' %}" class="btn btn-sm btn-secondary">View All</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Recent Interactions</h5>
+            </div>
+            <div class="card-body">
+                {% if recent_interactions %}
+                    <div class="table-responsive">
+                        <table class="table table-sm table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Owner</th>
+                                    <th>Type</th>
+                                    <th>Subject</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for interaction in recent_interactions %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'owner_detail' interaction.owner.pk %}">{{ interaction.owner.name }}</a>
+                                        </td>
+                                        <td><span class="badge bg-info">{{ interaction.get_interaction_type_display }}</span></td>
+                                        <td>{{ interaction.subject }}</td>
+                                        <td>{{ interaction.interaction_date|date:"M d, Y" }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="text-muted">No interactions yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
