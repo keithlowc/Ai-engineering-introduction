@@ -1,13 +1,13 @@
-version: '3.9'
+version: '3.8'
 
 services:
   db:
     image: postgres:15-alpine
-    container_name: django_postgres
+    container_name: keithlowdev_db
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-django_db}
+      POSTGRES_DB: ${POSTGRES_DB:-keithlowdev}
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
@@ -17,34 +17,23 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-    networks:
-      - django_network
 
   web:
     build: .
-    container_name: django_app
-    command: sh -c "python manage.py migrate && gunicorn config.wsgi:application --bind 0.0.0.0:8000"
+    container_name: keithlowdev_web
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
     ports:
       - "8000:8000"
     environment:
       DEBUG: ${DEBUG:-False}
-      SECRET_KEY: ${SECRET_KEY:-your-secret-key-here}
-      POSTGRES_DB: ${POSTGRES_DB:-django_db}
-      POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
-      POSTGRES_HOST: db
-      POSTGRES_PORT: 5432
+      SECRET_KEY: ${SECRET_KEY}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS:-localhost,127.0.0.1}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-changeme}@db:5432/${POSTGRES_DB:-keithlowdev}
     depends_on:
       db:
         condition: service_healthy
-    networks:
-      - django_network
 
 volumes:
   postgres_data:
-
-networks:
-  django_network:
-    driver: bridge
