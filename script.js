@@ -1,4 +1,4 @@
-// Smooth scroll for navigation links
+// Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -12,23 +12,28 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Navbar background on scroll
-const navbar = document.querySelector('.navbar');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
-    } else {
-        navbar.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
+// Contact form submission
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    
+    // Simulate form submission
+    if (name && email && message) {
+        alert(`Thank you ${name}! Your message has been sent. I'll get back to you at ${email} soon.`);
+        this.reset();
     }
 });
 
-// Intersection Observer for fade-in animations
+// Add animation on scroll
 const observerOptions = {
     threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    rootMargin: '0px 0px -100px 0px'
 };
 
-const observer = new IntersectionObserver((entries) => {
+const observer = new IntersectionObserver(function(entries) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.style.opacity = '1';
@@ -37,20 +42,9 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Apply animations to sections
-document.querySelectorAll('.section').forEach(section => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(20px)';
-    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(section);
+document.querySelectorAll('.expertise-card, .portfolio-item').forEach(element => {
+    element.style.opacity = '0';
+    element.style.transform = 'translateY(20px)';
+    element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(element);
 });
-
-// Add year to footer
-const footerYear = document.querySelector('footer p');
-if (footerYear) {
-    footerYear.innerHTML = `&copy; ${new Date().getFullYear()} Keith Low. All rights reserved.`;
-}
-
-// Console welcome message
-console.log('%c👋 Welcome to keithlowdev.com!', 'font-size: 20px; font-weight: bold; color: #2563eb;');
-console.log('%cFeel free to reach out if you want to collaborate!', 'color: #6b7280;');

@@ -1,99 +1,51 @@
-# Django Docker Compose PostgreSQL Setup
+# Lily Bui - AI Strategy & Advertising Portfolio Website
 
-This is a Django application migrated to use Docker Compose with PostgreSQL database.
+## Overview
+This is a professional portfolio website for Lily Bui, a Vietnamese AI strategy and advertising specialist. The website showcases her expertise, recent work, and provides a way for potential clients to get in touch.
 
-## Prerequisites
+## Features
+- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
+- **Modern Aesthetics**: Clean, professional design with gradient accents
+- **Smooth Scrolling**: Enhanced user experience with smooth navigation
+- **Portfolio Section**: Showcase of recent AI and advertising projects
+- **Contact Form**: Easy way for clients to reach out
+- **Sticky Navigation**: Always accessible navigation bar
+- **Hover Effects**: Interactive elements for better engagement
 
-- Docker
-- Docker Compose
+## Sections
+1. **Home/Hero**: Eye-catching introduction
+2. **About**: Personal background and professional overview
+3. **Expertise**: Six key areas of specialization
+4. **Portfolio**: Showcase of recent projects
+5. **Contact**: Contact form and information
+6. **Footer**: Copyright information
 
-## Installation & Setup
+## Technologies Used
+- HTML5
+- CSS3 (with Flexbox and Grid)
+- Vanilla JavaScript
+- Responsive Design Techniques
 
-1. Clone the repository
+## How to Use
+1. Clone or download the repository
+2. Open `index.html` in a web browser
+3. Customize content, images, and contact information as needed
 
-2. Copy the environment file:
-```bash
-cp .env.example .env
+## Customization
+- Update the email in the contact section
+- Replace placeholder images in the `assets/` folder
+- Modify the portfolio projects to match actual work
+- Update social media links
+
+## File Structure
+```
+├── index.html       # Main HTML file
+├── styles.css       # Styling
+├── script.js        # JavaScript functionality
+├── README.md        # This file
+└── assets/          # Images and media (create this folder)
+    └── profile.jpg  # Profile image
 ```
 
-3. Build and start the containers:
-```bash
-docker-compose up -d --build
-```
-
-This will:
-- Build the Django application image
-- Start PostgreSQL database
-- Run migrations automatically
-- Start the Django development server
-
-4. Access the application:
-- Django app: http://localhost:8000
-- Django admin: http://localhost:8000/admin
-
-## Available Commands
-
-### Start containers
-```bash
-docker-compose up
-```
-
-### Start in detached mode
-```bash
-docker-compose up -d
-```
-
-### Stop containers
-```bash
-docker-compose down
-```
-
-### View logs
-```bash
-docker-compose logs -f web
-docker-compose logs -f db
-```
-
-### Run Django management commands
-```bash
-docker-compose exec web python manage.py createsuperuser
-docker-compose exec web python manage.py makemigrations
-docker-compose exec web python manage.py migrate
-```
-
-### Access database
-```bash
-docker-compose exec db psql -U postgres -d django_db
-```
-
-## Environment Variables
-
-Edit `.env` file to customize:
-- `DEBUG` - Django debug mode
-- `SECRET_KEY` - Django secret key
-- `POSTGRES_DB` - Database name
-- `POSTGRES_USER` - Database user
-- `POSTGRES_PASSWORD` - Database password
-
-## Project Structure
-
-```
-.
-├── Dockerfile
-├── docker-compose.yml
-├── requirements.txt
-├── manage.py
-├── config/
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-├── .env.example
-├── .dockerignore
-└── README.md
-```
-
-## Notes
-
-- The database data is persisted in a Docker volume `postgres_data`
-- Migrations run automatically on container startup
-- For production, update `DEBUG=False` and set a strong `SECRET_KEY` in `.env`
+## License
+This website is the property of Lily Bui.
