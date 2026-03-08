@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keith Low - AI Engineer & Freelancer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">Keith Low</div>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#capabilities" class="nav-link">Capabilities</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">AI Engineer & Freelancer</h1>
+            <p class="hero-subtitle">Transforming ideas into intelligent solutions with cutting-edge AI technology</p>
+            <button class="cta-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Get Started</button>
+        </div>
+        <div class="hero-background"></div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>I'm Keith Low, a passionate AI engineer with expertise in machine learning, natural language processing, and deep learning. With a strong background in software development and data science, I help businesses harness the power of artificial intelligence to solve complex problems and drive innovation.</p>
+                <p>My mission is to deliver high-quality, scalable AI solutions that create real value for clients. Whether you're looking to build an intelligent system from scratch or optimize existing processes with AI, I'm here to help.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="capabilities" class="capabilities">
+        <div class="container">
+            <h2 class="section-title">My Capabilities</h2>
+            <div class="capabilities-grid">
+                <div class="capability-card">
+                    <div class="capability-icon">🤖</div>
+                    <h3>Machine Learning</h3>
+                    <p>Building predictive models, classification systems, and regression models using scikit-learn, TensorFlow, and PyTorch</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-icon">🧠</div>
+                    <h3>Deep Learning</h3>
+                    <p>Designing and training neural networks for image recognition, NLP, and complex pattern recognition tasks</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-icon">💬</div>
+                    <h3>Natural Language Processing</h3>
+                    <p>Text analysis, sentiment analysis, chatbots, language models, and information extraction systems</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-icon">👁️</div>
+                    <h3>Computer Vision</h3>
+                    <p>Image classification, object detection, facial recognition, and custom vision solutions</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-icon">📊</div>
+                    <h3>Data Analysis</h3>
+                    <p>Data preprocessing, exploratory data analysis, visualization, and statistical modeling</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-icon">🚀</div>
+                    <h3>AI Deployment</h3>
+                    <p>Deploying models to production using Docker, AWS, GCP, and building scalable AI applications</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>AI Consulting</h3>
+                    <p>Strategic guidance on implementing AI solutions for your business, from concept to execution</p>
+                </div>
+                <div class="service-card">
+                    <h3>Custom AI Development</h3>
+                    <p>Tailored AI solutions built to your specific requirements and integrated with existing systems</p>
+                </div>
+                <div class="service-card">
+                    <h3>Model Training & Optimization</h3>
+                    <p>Training, fine-tuning, and optimizing machine learning models for improved performance</p>
+                </div>
+                <div class="service-card">
+                    <h3>API Development</h3>
+                    <p>Building robust APIs for AI model inference and integration with web and mobile applications</p>
+                </div>
+                <div class="service-card">
+                    <h3>Data Pipeline Development</h3>
+                    <p>Creating efficient data pipelines for processing, transformation, and model training</p>
+                </div>
+                <div class="service-card">
+                    <h3>AI Application Development</h3>
+                    <p>Full-stack development of intelligent applications combining frontend, backend, and AI components</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="contact-intro">Ready to bring your AI ideas to life? Let's collaborate!</p>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-button">Send Message</button>
+            </form>
+            <div class="social-links">
+                <a href="https://linkedin.com" target="_blank" class="social-link">LinkedIn</a>
+                <a href="https://github.com" target="_blank" class="social-link">GitHub</a>
+                <a href="https://twitter.com" target="_blank" class="social-link">Twitter</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 Keith Low. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
