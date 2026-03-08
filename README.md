@@ -1,100 +1,99 @@
-# Property Owner CRM
+# Django Docker Compose PostgreSQL Setup
 
-A Django-based Customer Relationship Management (CRM) system for managing store property owners information and ratings.
+This is a Django application migrated to use Docker Compose with PostgreSQL database.
 
-## Features
+## Prerequisites
 
-- **Property Owner Management**: Add, edit, delete, and view property owner details
-- **Rating System**: Rate owners on reliability, communication, maintenance, and overall performance
-- **Interaction Logging**: Track all interactions (calls, emails, meetings) with property owners
-- **Search & Filter**: Search by name, email, company, or filter by rating and status
-- **Dashboard**: Quick overview of key metrics and recent interactions
-- **Responsive Design**: Bootstrap-based responsive UI
+- Docker
+- Docker Compose
 
-## Installation
+## Installation & Setup
 
 1. Clone the repository
-2. Create and activate a virtual environment:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\\Scripts\\activate
-   ```
 
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+2. Copy the environment file:
+```bash
+cp .env.example .env
+```
 
-4. Run migrations:
-   ```bash
-   python manage.py migrate
-   ```
+3. Build and start the containers:
+```bash
+docker-compose up -d --build
+```
 
-5. Create a superuser:
-   ```bash
-   python manage.py createsuperuser
-   ```
+This will:
+- Build the Django application image
+- Start PostgreSQL database
+- Run migrations automatically
+- Start the Django development server
 
-6. Start the development server:
-   ```bash
-   python manage.py runserver
-   ```
+4. Access the application:
+- Django app: http://localhost:8000
+- Django admin: http://localhost:8000/admin
 
-7. Access the application:
-   - Dashboard: http://localhost:8000/
-   - Admin: http://localhost:8000/admin/
+## Available Commands
 
-## Usage
+### Start containers
+```bash
+docker-compose up
+```
 
-### Dashboard
-The main dashboard provides quick stats about property owners and recent interactions.
+### Start in detached mode
+```bash
+docker-compose up -d
+```
 
-### Managing Owners
-- Click "+ New Owner" to add a new property owner
-- Use the search bar to find owners by name, email, or company
-- Filter by rating and status
-- View detailed owner information including rating history
+### Stop containers
+```bash
+docker-compose down
+```
 
-### Rating System
-Property owners can be rated on:
-- **Reliability**: How dependable and punctual they are
-- **Communication**: Responsiveness and clarity of communication
-- **Maintenance**: Property maintenance standards
-- **Overall**: Overall rating based on your experience
+### View logs
+```bash
+docker-compose logs -f web
+docker-compose logs -f db
+```
 
-### Interaction Tracking
-Log interactions with owners including:
-- Phone calls
-- Emails
-- In-person meetings
-- Text messages
-- Other interactions
+### Run Django management commands
+```bash
+docker-compose exec web python manage.py createsuperuser
+docker-compose exec web python manage.py makemigrations
+docker-compose exec web python manage.py migrate
+```
 
-## Models
+### Access database
+```bash
+docker-compose exec db psql -U postgres -d django_db
+```
 
-### PropertyOwner
-- Basic contact information
-- Rating fields (1-5 scale)
-- Notes and status
-- Timestamps
+## Environment Variables
 
-### InteractionLog
-- Links to PropertyOwner
-- Interaction type
-- Subject and notes
-- Date/time tracking
+Edit `.env` file to customize:
+- `DEBUG` - Django debug mode
+- `SECRET_KEY` - Django secret key
+- `POSTGRES_DB` - Database name
+- `POSTGRES_USER` - Database user
+- `POSTGRES_PASSWORD` - Database password
 
-## Admin Interface
+## Project Structure
 
-Access the Django admin interface at `/admin/` to manage owners and interactions with full CRUD capabilities.
+```
+.
+├── Dockerfile
+├── docker-compose.yml
+├── requirements.txt
+├── manage.py
+├── config/
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── .env.example
+├── .dockerignore
+└── README.md
+```
 
-## Technologies Used
+## Notes
 
-- Django 4.2
-- SQLite (default)
-- Bootstrap 5
-- HTML5/CSS3
-
-## License
-
-MIT
+- The database data is persisted in a Docker volume `postgres_data`
+- Migrations run automatically on container startup
+- For production, update `DEBUG=False` and set a strong `SECRET_KEY` in `.env`
