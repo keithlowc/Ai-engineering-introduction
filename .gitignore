@@ -3,20 +3,32 @@
 .env.local
 .env.*.local
 
-# Django
-*.log
-*.pot
+# Secrets
+*.key
+*.pem
+secrets/
+
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-
-# Virtual Environment
-venv/
-env/
-ENV/
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
 # IDE
 .vscode/
@@ -27,17 +39,7 @@ ENV/
 .DS_Store
 
 # Docker
-.docker/
+.dockerignore
 
-# Node
-node_modules/
-npm-debug.log
-
-# Build
-/build/
-/dist/
-*.egg-info/
-
-# Static and Media files
-/staticfiles/
-/media/
+# OS
+Thumbs.db
