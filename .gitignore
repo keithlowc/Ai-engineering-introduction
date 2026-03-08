@@ -3,11 +3,6 @@
 .env.local
 .env.*.local
 
-# Secrets
-*.key
-*.pem
-secrets/
-
 # Python
 __pycache__/
 *.py[cod]
@@ -30,6 +25,19 @@ wheels/
 .installed.cfg
 *.egg
 
+# Virtual environments
+venv/
+ENV/
+env/
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+/media
+/staticfiles
+
 # IDE
 .vscode/
 .idea/
@@ -38,8 +46,12 @@ wheels/
 *~
 .DS_Store
 
-# Docker
-.dockerignore
+# Testing
+.coverage
+.pytest_cache/
+htmlcov/
 
-# OS
-Thumbs.db
+# Secrets and credentials
+*.pem
+*.key
+secrets.json
