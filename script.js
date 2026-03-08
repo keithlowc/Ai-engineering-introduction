@@ -2,12 +2,9 @@
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            targetElement.scrollIntoView({
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
             });
@@ -21,80 +18,78 @@ if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
         e.preventDefault();
         
+        // Get form data
         const formData = new FormData(this);
-        const name = this.elements[0].value;
-        const email = this.elements[1].value;
-        const message = this.elements[2].value;
+        const data = {
+            name: this.querySelector('input[type="text"]').value,
+            email: this.querySelector('input[type="email"]').value,
+            message: this.querySelector('textarea').value
+        };
         
-        // Simple validation
-        if (name.trim() === '' || email.trim() === '' || message.trim() === '') {
-            alert('Please fill in all fields');
-            return;
-        }
-        
-        // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            alert('Please enter a valid email address');
-            return;
-        }
+        // Log the form data (in production, this would be sent to a server)
+        console.log('Form submitted:', data);
         
         // Show success message
-        alert('Thank you for your message! I\'ll get back to you soon.');
+        alert('Thank you for your message! I will get back to you soon.');
+        
+        // Reset form
         this.reset();
     });
 }
 
-// Navbar scroll effect
-const navbar = document.querySelector('.navbar');
-window.addEventListener('scroll', function () {
-    if (window.scrollY > 100) {
-        navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
-    } else {
-        navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
-    }
-});
-
-// Animate elements on scroll
+// Add animation on scroll
 const observerOptions = {
     threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    rootMargin: '0px 0px -100px 0px'
 };
 
 const observer = new IntersectionObserver(function (entries) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            entry.target.style.animation = 'fadeInUp 0.6s ease-out';
+            observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
-document.querySelectorAll('.capability-card, .portfolio-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
+// Observe expertise cards
+document.querySelectorAll('.expertise-card').forEach(card => {
+    card.style.opacity = '0';
+    observer.observe(card);
 });
 
-// Highlight active nav link
-window.addEventListener('scroll', () => {
+// Add fade-in animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+`;
+document.head.appendChild(style);
+
+// Active navigation link highlighting
+window.addEventListener('scroll', function () {
     let current = '';
     const sections = document.querySelectorAll('section');
     
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        if (scrollY >= sectionTop - 200) {
+        if (pageYOffset >= sectionTop - 200) {
             current = section.getAttribute('id');
         }
     });
     
-    document.querySelectorAll('.nav-links a').forEach(link => {
+    document.querySelectorAll('.nav-menu a').forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href').slice(1) === current) {
-            link.style.color = 'var(--primary-color)';
-        } else {
-            link.style.color = 'var(--text-dark)';
+            link.classList.add('active');
         }
     });
 });
