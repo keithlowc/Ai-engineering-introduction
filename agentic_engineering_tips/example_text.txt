@@ -1,0 +1,33 @@
+Contact Information - Office Directory
+
+John Smith - Office Manager
+Phone: (555) 123-4567
+Email: john.smith@company.com
+
+Sarah Johnson - Senior Developer  
+Phone: (555) 987-6543
+Email: sarah.johnson@company.com
+
+Michael Chen - Product Manager
+Phone: Not available at the moment
+Email: michael.chen@company.com
+
+Emily Davis - UX Designer
+Phone: (555) 456-7890
+Email: emily.davis@company.com
+
+David Wilson - DevOps Engineer
+Phone: (555) 234-5678
+Email: david.wilson@company.com
+
+Lisa Thompson - Marketing Lead
+Phone: (555) 876-5432
+Email: lisa.thompson@company.com
+
+Robert Brown - Security Analyst
+Phone: 555.333.4444
+Email: robert.brown@company.com
+
+Jennifer Martinez - Data Scientist
+Phone: +1-555-111-2222
+Email: jennifer.martinez@company.com
